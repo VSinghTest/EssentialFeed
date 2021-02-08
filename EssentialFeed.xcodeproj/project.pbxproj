@@ -57,8 +57,7 @@
 		3B96F1F625D0B2C8002A8B67 = {
 			isa = PBXGroup;
 			children = (
-				3B96F22025D0D09B002A8B67 /* FeedLoader.swift */,
-				3B96F21C25D0B2F9002A8B67 /* FeedItem.swift */,
+				3B96F22425D0DCCF002A8B67 /* FeedFeature */,
 				3B96F20225D0B2C8002A8B67 /* EssentialFeed */,
 				3B96F20D25D0B2C9002A8B67 /* EssentialFeedTests */,
 				3B96F20125D0B2C8002A8B67 /* Products */,
@@ -90,6 +89,15 @@
 				3B96F21025D0B2C9002A8B67 /* Info.plist */,
 			);
 			path = EssentialFeedTests;
+			sourceTree = "<group>";
+		};
+		3B96F22425D0DCCF002A8B67 /* FeedFeature */ = {
+			isa = PBXGroup;
+			children = (
+				3B96F21C25D0B2F9002A8B67 /* FeedItem.swift */,
+				3B96F22025D0D09B002A8B67 /* FeedLoader.swift */,
+			);
+			path = FeedFeature;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
