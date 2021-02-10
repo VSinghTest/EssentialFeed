@@ -12,15 +12,16 @@ public protocol HTTPClient{
 }
 
 // we don't have use cases to allow subclassing so make it final
+
 public final class RemoteFeedLoader {
     
     private let url: URL
     private let client: HTTPClient
     
     public enum Error: Swift.Error{
-        
         case connectivity
     }
+    
     public init(url: URL, client: HTTPClient) {
         self.client = client
         self.url = url
@@ -31,7 +32,6 @@ public final class RemoteFeedLoader {
             error in
             completion(.connectivity)
         }
-        
     }
 }
 
