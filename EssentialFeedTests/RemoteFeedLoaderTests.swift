@@ -61,9 +61,7 @@ class RemoteFeedLoaderTests: XCTestCase{
                 client.complete(withStatusCode: code, data: json, at: index)
                 
             }
-              
         }
-        
     }
     
     func test_load_deliversErrorOn200HTTPResponseWithInvalidJSON(){
@@ -120,8 +118,19 @@ class RemoteFeedLoaderTests: XCTestCase{
     -> (sut: RemoteFeedLoader, client: HTTPClientSpy ){
         
         let client = HTTPClientSpy()
+        let sut = RemoteFeedLoader(url:url, client:client)
         
-        return (RemoteFeedLoader(url:url, client:client), client)
+        trackForMemoryLeaks(instance: client)
+        trackForMemoryLeaks(instance: sut)
+        return (sut , client)
+    }
+    
+    
+    private func trackForMemoryLeaks(instance: AnyObject, file: StaticString = #filePath, line: UInt = #line ){
+        addTeardownBlock { [weak instance] in
+            
+        XCTAssertNil(instance, "Instance should have been deallocated. Potential Memory Leak", file: file, line: line)
+        }
         
     }
      
