@@ -31,6 +31,9 @@ extension FeedItem: Decodable{
         case description
         case location
         case imageUrl = "image"
+      // Red Flag !!!!! APi detail leaked into our feature module
+     // A seemingly harmless string in the wrong module can end up breaking our abstractions!!
         
+    
     }
 }
