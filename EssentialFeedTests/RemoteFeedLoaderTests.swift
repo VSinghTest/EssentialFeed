@@ -34,7 +34,6 @@ class RemoteFeedLoaderTests: XCTestCase{
         sut.load{_ in }
         sut.load{_ in }
         
-       
         XCTAssertEqual(client.requestedURLs, [url,url])
     }
     
@@ -55,11 +54,10 @@ class RemoteFeedLoaderTests: XCTestCase{
         
         let samples = [199, 201, 300, 400, 500]
         samples.enumerated().forEach { (index, code) in
-            
+           
             expect(sut, toCompleteWithResult: .failure(.invalidData)) {
                 let json = makeItemsJSON([])
                 client.complete(withStatusCode: code, data: json, at: index)
-                
             }
         }
     }
@@ -70,9 +68,7 @@ class RemoteFeedLoaderTests: XCTestCase{
         
         expect(sut, toCompleteWithResult: .failure(.invalidData)) {
             let InvalidJSONData = Data("Invalid JSON".utf8)
-            
            client.complete(withStatusCode: 200, data: InvalidJSONData)
-       
         }
      }
     
@@ -81,11 +77,10 @@ class RemoteFeedLoaderTests: XCTestCase{
         let (sut , client) = makeSUT()
         
         expect(sut, toCompleteWithResult: .success([])) {
-           
-             let emptyJsonList = makeItemsJSON([])
-            
+           let emptyJsonList = makeItemsJSON([])
            client.complete(withStatusCode: 200, data: emptyJsonList)
         }
+        
      }
     
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems(){
@@ -112,6 +107,23 @@ class RemoteFeedLoaderTests: XCTestCase{
     
     
     
+    func test_load_doesNotdelieverResultsAfterSUTHasBeenDeallocated(){
+        
+        let url = URL(string: "http://any-url.com")!
+        let client = HTTPClientSpy()
+        var sut: RemoteFeedLoader? = RemoteFeedLoader(url: url, client: client)
+        
+        var capturedResults = [RemoteFeedLoader.Result]()
+        sut?.load{ capturedResults.append($0)}
+        
+        sut = nil
+        client.complete(withStatusCode: 200, data: makeItemsJSON([]))
+        
+        XCTAssertTrue(capturedResults.isEmpty)
+        
+    }
+    
+    
     //MARK: - Helpers
     
     private func makeSUT(_ url : URL = URL(string: "https://a-url.com")!)
@@ -133,7 +145,8 @@ class RemoteFeedLoaderTests: XCTestCase{
         }
         
     }
-     
+    
+    
     private func makeItem(id: UUID, description: String? = nil, location: String? = nil , imageUrl: URL) -> (model: FeedItem, json: [String : Any]){
     
     let item = FeedItem(id: id, description: description, location: location, imageUrl: imageUrl)
