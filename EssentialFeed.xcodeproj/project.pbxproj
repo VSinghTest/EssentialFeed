@@ -65,8 +65,7 @@
 		3B96F1F625D0B2C8002A8B67 = {
 			isa = PBXGroup;
 			children = (
-				3B96F23C25D71BCF002A8B67 /* FeedItemsMapper.swift */,
-				3B96F23825D71B24002A8B67 /* HTTPClient.swift */,
+				3B96F20425D0B2C8002A8B67 /* Info.plist */,
 				3B96F20225D0B2C8002A8B67 /* EssentialFeed */,
 				3B96F20D25D0B2C9002A8B67 /* EssentialFeedTests */,
 				3B96F20125D0B2C8002A8B67 /* Products */,
@@ -85,9 +84,8 @@
 		3B96F20225D0B2C8002A8B67 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
-				3B96F22D25D388A9002A8B67 /* Feed API */,
 				3B96F22425D0DCCF002A8B67 /* FeedFeature */,
-				3B96F20425D0B2C8002A8B67 /* Info.plist */,
+				3B96F22D25D388A9002A8B67 /* Feed API */,
 				3B96F20325D0B2C8002A8B67 /* EssentialFeed.h */,
 			);
 			path = EssentialFeed;
@@ -96,9 +94,9 @@
 		3B96F20D25D0B2C9002A8B67 /* EssentialFeedTests */ = {
 			isa = PBXGroup;
 			children = (
-				3B96F20E25D0B2C9002A8B67 /* EssentialFeedTests.swift */,
 				3B96F21025D0B2C9002A8B67 /* Info.plist */,
-				3B96F22525D1FF15002A8B67 /* RemoteFeedLoaderTests.swift */,
+				3B96F24025D7983A002A8B67 /* Feed API */,
+				3B96F20E25D0B2C9002A8B67 /* EssentialFeedTests.swift */,
 			);
 			path = EssentialFeedTests;
 			sourceTree = "<group>";
@@ -116,6 +114,16 @@
 			isa = PBXGroup;
 			children = (
 				3B96F22E25D38930002A8B67 /* RemoteFeedLoader.swift */,
+				3B96F23C25D71BCF002A8B67 /* FeedItemsMapper.swift */,
+				3B96F23825D71B24002A8B67 /* HTTPClient.swift */,
+			);
+			path = "Feed API";
+			sourceTree = "<group>";
+		};
+		3B96F24025D7983A002A8B67 /* Feed API */ = {
+			isa = PBXGroup;
+			children = (
+				3B96F22525D1FF15002A8B67 /* RemoteFeedLoaderTests.swift */,
 			);
 			path = "Feed API";
 			sourceTree = "<group>";
