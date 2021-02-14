@@ -65,7 +65,6 @@
 		3B96F1F625D0B2C8002A8B67 = {
 			isa = PBXGroup;
 			children = (
-				3B96F20425D0B2C8002A8B67 /* Info.plist */,
 				3B96F20225D0B2C8002A8B67 /* EssentialFeed */,
 				3B96F20D25D0B2C9002A8B67 /* EssentialFeedTests */,
 				3B96F20125D0B2C8002A8B67 /* Products */,
@@ -84,6 +83,7 @@
 		3B96F20225D0B2C8002A8B67 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				3B96F20425D0B2C8002A8B67 /* Info.plist */,
 				3B96F22425D0DCCF002A8B67 /* FeedFeature */,
 				3B96F22D25D388A9002A8B67 /* Feed API */,
 				3B96F20325D0B2C8002A8B67 /* EssentialFeed.h */,
