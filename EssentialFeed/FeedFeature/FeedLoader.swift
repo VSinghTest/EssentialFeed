@@ -20,5 +20,5 @@ public protocol FeedLoader{
     
     associatedtype Error: Swift.Error
     
-    func loadItem(completion: @escaping(LoadFeedResult<Error>) -> Void)
+    func load(completion: @escaping(LoadFeedResult<Error>) -> Void)
 }

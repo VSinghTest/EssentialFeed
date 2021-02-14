@@ -9,7 +9,8 @@ import Foundation
 
 // we don't have use cases to allow subclassing so make it final
 
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader: FeedLoader {
+    
     
     private let url: URL
     private let client: HTTPClient
