@@ -84,6 +84,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     
 //MARK: - Helpers
     
+    
+    // Move the URLSessionHTTPClient( the system under test, or "SUT") creation to a factory method to protect our tests from breaking changes.
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient{
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(instance: sut, file: file, line: line)
@@ -91,14 +93,9 @@ class URLSessionHTTPClientTests: XCTestCase {
     }
     
     
-    private func trackForMemoryLeaks(instance: AnyObject, file: StaticString = #filePath, line: UInt = #line ){
-        addTeardownBlock { [weak instance] in
-            
-        XCTAssertNil(instance, "Instance should have been deallocated. Potential Memory Leak", file: file, line: line)
-        }
-        
-    }
+   
     private class URLProtocolStub: URLProtocol{
+       
         private static var stub: Stub?
         private static var requestObserver:((URLRequest) -> Void)?
         private struct Stub{
