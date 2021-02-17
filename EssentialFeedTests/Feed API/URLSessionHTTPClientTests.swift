@@ -11,7 +11,7 @@ import EssentialFeed
 
 
 
-class URLSessionHTTPClient{
+class URLSessionHTTPClient: HTTPClient{
     
     private let session: URLSession
     
@@ -119,7 +119,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     
     // Move the URLSessionHTTPClient( the system under test, or "SUT") creation to a factory method to protect our tests from breaking changes.
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient{
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient{
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return sut
