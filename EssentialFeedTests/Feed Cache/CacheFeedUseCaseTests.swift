@@ -8,6 +8,8 @@
 import XCTest
 import EssentialFeed
 
+
+
 class LocalFeedLoader{
     private let store: FeedStore
     private let currentDate: () -> Date
@@ -66,6 +68,10 @@ class FeedStore{
     
     func completionInsertion(with error: Error, at index: Int = 0){
         insertionCompletions[index](error)
+    }
+    
+    func completeInsertionSuccessfully(at index: Int = 0){
+        insertionCompletions[index](nil)
     }
 }
 
@@ -155,6 +161,26 @@ class CacheFeedUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
         
         XCTAssertEqual(receivedError as NSError?, insertionError)
+    }
+    
+    func test_save_succeedsOnSuccessfullCacheInsertion(){
+        
+        let items = [uniqueItem(), uniqueItem()]
+        let (sut , store) = makeSUT()
+        
+        let exp = expectation(description: "wait for completion")
+        
+        var receivedError: Error?
+        sut.save(items){ error in
+            receivedError = error
+            exp.fulfill()
+        }
+        
+        store.completeDeletionSuccessfully()
+        store.completeInsertionSuccessfully()
+        wait(for: [exp], timeout: 1.0)
+        
+        XCTAssertNil(receivedError as NSError?)
     }
     
    //MARK: - Helpers
