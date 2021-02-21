@@ -33,7 +33,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     
     func test_init_doesNotDeleteCacheUponCreation(){
         
-        let (_ , store) = makeSut() // To decouple the application from framework details, we don't let frameworks dictate the UseCase interfaces(e.g. adding Codable requirements or Coredata managed contexts parametrs)
+        let (_ , store) = makeSUT() // To decouple the application from framework details, we don't let frameworks dictate the UseCase interfaces(e.g. adding Codable requirements or Coredata managed contexts parametrs)
         //We do so by test-driving the interfaces the Use case needs for its collaborators, rather than defining the interface upfront to facilitate a specfic framework implementattion.
         XCTAssertEqual(store.deleteCachedfeedCallCount, 0)
     }
@@ -43,16 +43,19 @@ class CacheFeedUseCaseTests: XCTestCase {
         
         
         let items = [uniqueItem(), uniqueItem()]
-        let (sut , store) = makeSut()
+        let (sut , store) = makeSUT()
         sut.save(items)
         XCTAssertEqual(store.deleteCachedfeedCallCount, 1)
     }
 
    //MARK: - Helpers
     
-    private func makeSut() -> (sut: LocalFeedLoader, store: FeedStore){
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStore){
         let store = FeedStore()
-       return (LocalFeedLoader(store: store) , store)
+        let sut = LocalFeedLoader(store: store)
+        trackForMemoryLeaks(store, file: file, line: line)
+        trackForMemoryLeaks(sut, file: file, line: line)
+       return ( sut , store)
     }
     
     private func uniqueItem() -> FeedItem{
