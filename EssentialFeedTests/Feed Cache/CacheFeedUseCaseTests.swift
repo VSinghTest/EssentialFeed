@@ -3,7 +3,21 @@
 //  EssentialFeedTests
 //
 //  Created by Vibha Singh on 2/20/21.
-//
+//   Data:
+// Image Feed
+// Primary course (happy path):
+//1 Execute "Save Image Feed" command with above data.
+//2 System deletes old cache data.
+//3 System encodes image feed.
+//4 System timestamps the new cache.
+//5 System saves new cache data.
+//6 System delivers success message.
+
+// Deleting error course (sad path):
+//  System delivers error.
+
+//Saving error course (sad path):
+//  System delivers error.
 
 import XCTest
 import EssentialFeed

@@ -3,7 +3,23 @@
 //  EssentialFeedTests
 //
 //  Created by Vibha Singh on 2/8/21.
-//
+//Load Feed From Remote Use Case
+
+//Data:
+//  URL
+
+//Primary course (happy path):
+//Execute "Load Image Feed" command with above data.
+//System downloads data from the URL.
+//System validates downloaded data.
+//System creates image feed from valid data.
+//System delivers image feed.
+
+//Invalid data – error course (sad path):
+//  System delivers invalid data error.
+
+//No connectivity – error course (sad path):
+//  System delivers connectivity error.
 
 import XCTest
 import EssentialFeed

@@ -34,7 +34,10 @@ public final class LocalFeedLoader{
                 
             }
         }
+   
     
+    // Loading from the cache is a "Query", and ideally should have no side-effects.
+    // Deleting the cache alters the state of the system, which is a side-effect.
     public func load(completion: @escaping (LoadResult) -> Void){
         store.retrieve(){ [weak self] result in
             
