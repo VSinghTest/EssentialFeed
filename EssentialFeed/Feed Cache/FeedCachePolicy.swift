@@ -16,7 +16,7 @@ internal final class FeedCachePolicy{
     
     
     private static var maxCacheAgeInDays: Int{
-        return 7
+        return 3
     }
     
     static func validate(_ timestamp: Date, against date: Date) -> Bool{

@@ -14,6 +14,8 @@ public enum RetrieveCachedFeedResult{
     case failure(Error)
 }
 
+// In FeedStore case the side effects overlapped. when u delete a cache u affect the insert. when u insert u also affect the delete and reteive affected by all of them. this can become messy quickly. so before we begin we must fully understand our expectations on the infrastructure implementation.
+
 public protocol FeedStore{
     
     typealias DeletionCompletion = (Error?) -> Void
