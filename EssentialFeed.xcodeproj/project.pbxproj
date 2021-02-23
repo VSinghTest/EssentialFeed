@@ -18,6 +18,8 @@
 		3B03016125E3F4EA00319CB5 /* LoadFeedFromCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03016025E3F4EA00319CB5 /* LoadFeedFromCacheUseCaseTests.swift */; };
 		3B03016725E3FB0E00319CB5 /* FeedStoreSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03016625E3FB0E00319CB5 /* FeedStoreSpy.swift */; };
 		3B03016F25E4758400319CB5 /* ValidateFeedCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03016E25E4758400319CB5 /* ValidateFeedCacheUseCaseTests.swift */; };
+		3B03017525E47D2C00319CB5 /* FeedCacheTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03017425E47D2C00319CB5 /* FeedCacheTestHelpers.swift */; };
+		3B03018025E47F1700319CB5 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B03017F25E47F1700319CB5 /* SharedTestHelpers.swift */; };
 		3B96F20A25D0B2C9002A8B67 /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B96F20025D0B2C8002A8B67 /* EssentialFeed.framework */; };
 		3B96F20F25D0B2C9002A8B67 /* EssentialFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B96F20E25D0B2C9002A8B67 /* EssentialFeedTests.swift */; };
 		3B96F21125D0B2C9002A8B67 /* EssentialFeed.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B96F20325D0B2C8002A8B67 /* EssentialFeed.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -61,6 +63,8 @@
 		3B03016025E3F4EA00319CB5 /* LoadFeedFromCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFeedFromCacheUseCaseTests.swift; sourceTree = "<group>"; };
 		3B03016625E3FB0E00319CB5 /* FeedStoreSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStoreSpy.swift; sourceTree = "<group>"; };
 		3B03016E25E4758400319CB5 /* ValidateFeedCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFeedCacheUseCaseTests.swift; sourceTree = "<group>"; };
+		3B03017425E47D2C00319CB5 /* FeedCacheTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCacheTestHelpers.swift; sourceTree = "<group>"; };
+		3B03017F25E47F1700319CB5 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 		3B96F20025D0B2C8002A8B67 /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B96F20325D0B2C8002A8B67 /* EssentialFeed.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EssentialFeed.h; sourceTree = "<group>"; };
 		3B96F20425D0B2C8002A8B67 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 		3B03016525E3FAE000319CB5 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				3B03017425E47D2C00319CB5 /* FeedCacheTestHelpers.swift */,
 				3B03016625E3FB0E00319CB5 /* FeedStoreSpy.swift */,
 			);
 			path = Helpers;
@@ -221,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				3B96F24A25DC7F48002A8B67 /* XCTestCase+MemoryLeakTracking.swift */,
+				3B03017F25E47F1700319CB5 /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -391,8 +397,10 @@
 			files = (
 				3B96F22625D1FF15002A8B67 /* RemoteFeedLoaderTests.swift in Sources */,
 				3B96F24B25DC7F48002A8B67 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
+				3B03018025E47F1700319CB5 /* SharedTestHelpers.swift in Sources */,
 				3B96F24625D8E3AB002A8B67 /* URLSessionHTTPClientTests.swift in Sources */,
 				3B03012A25E1C9A400319CB5 /* CacheFeedUseCaseTests.swift in Sources */,
+				3B03017525E47D2C00319CB5 /* FeedCacheTestHelpers.swift in Sources */,
 				3B03016F25E4758400319CB5 /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				3B03016725E3FB0E00319CB5 /* FeedStoreSpy.swift in Sources */,
 				3B03016125E3F4EA00319CB5 /* LoadFeedFromCacheUseCaseTests.swift in Sources */,
