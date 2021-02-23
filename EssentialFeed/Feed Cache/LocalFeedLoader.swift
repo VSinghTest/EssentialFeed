@@ -24,29 +24,7 @@
 // values =>(models with no identity)  just encapsulates a rule that means we do't need instance of a feed cache policy.It can be static since this policy is deterministic has no side effects, hold no states
 
 import Foundation
- 
 
-private final class FeedCachePolicy{
-    
-    private init() {}
-    
-  //  private let currentDate: () -> Date => impure fuction nondeterministic func so remove and provide through method injection
-    private static let calendar = Calendar(identifier: .gregorian)
-    
-    
-    private static var maxCacheAgeInDays: Int{
-        return 7
-    }
-    
-    static func validate(_ timestamp: Date, against date: Date) -> Bool{
-        guard let maxCacheAge = calendar.date(byAdding: .day,value: maxCacheAgeInDays, to: timestamp) else{ return false }
-        
-        return date < maxCacheAge // this is a deterministic func
-    }
-    
-    
-    
-}
 public final class LocalFeedLoader{
     
     private let store: FeedStore
