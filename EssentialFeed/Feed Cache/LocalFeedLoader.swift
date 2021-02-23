@@ -15,24 +15,30 @@
 // caching policy is  a policy to a business rule ,dpending on the b rule this policy might be so imptt that needs to be shared among usecases and shared across spplication. so app agnostic. it all depends on the use case. In this case it's a business rule that can be used across usecases / application so can be encapsulate in its own model. we can reuse later if we have to. We can extract the b rules from this control type and moved it to the reusable model
 
 
-//The localfeedloader should encapsulate application-speific logic only, and communicate with Modles to perform business logic.
+// The localfeedloader should encapsulate application-speific logic only, and communicate with Modles to perform business logic.
+
 // rules and policies (e.g. validation logic) are better suited in a domain model that is application-agnostic (so it can be [re]used across applications.
 
+//Business models are normally separated into models that have identity and models that don't  have identity like policy. e.g. customer is a model and policy is a rule has not concept of identity.
+//B rules with identity => entity (models with identity)
+// values =>(models with no identity)  just encapsulates a rule that means we do't need instance of a feed cache policy.It can be static since this policy is deterministic has no side effects, hold no states
 
 import Foundation
  
 
 private final class FeedCachePolicy{
     
+    private init() {}
+    
   //  private let currentDate: () -> Date => impure fuction nondeterministic func so remove and provide through method injection
-    private let calendar = Calendar(identifier: .gregorian)
+    private static let calendar = Calendar(identifier: .gregorian)
     
     
-    private var maxCacheAgeInDays: Int{
+    private static var maxCacheAgeInDays: Int{
         return 7
     }
     
-    func validate(_ timestamp: Date, against date: Date) -> Bool{
+    static func validate(_ timestamp: Date, against date: Date) -> Bool{
         guard let maxCacheAge = calendar.date(byAdding: .day,value: maxCacheAgeInDays, to: timestamp) else{ return false }
         
         return date < maxCacheAge // this is a deterministic func
@@ -45,9 +51,7 @@ public final class LocalFeedLoader{
     
     private let store: FeedStore
     private let currentDate: () -> Date
-    private let cachePolicy = FeedCachePolicy()
    
-    
   public init(store: FeedStore, currentDate:@escaping () -> Date ){
         self.store = store
         self.currentDate = currentDate
@@ -98,7 +102,7 @@ extension LocalFeedLoader: FeedLoader{
             case let .failure(error):
                 completion(.failure(error))
            
-            case let .found(feed, timestamp) where self.cachePolicy.validate(timestamp, against: self.currentDate()):
+            case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, against: self.currentDate()):
                 completion(.success(feed.toModels()))
             
             case .found, .empty:
@@ -117,7 +121,7 @@ extension LocalFeedLoader{
             case .failure:
                 self.store.deleteCachedFeed{_ in }
                 
-            case let .found(_ , timestamp) where !self.cachePolicy.validate(timestamp,against: self.currentDate()):
+            case let .found(_ , timestamp) where !FeedCachePolicy.validate(timestamp,against: self.currentDate()):
                 self.store.deleteCachedFeed{ _ in }
                 
             case .empty, .found: break
