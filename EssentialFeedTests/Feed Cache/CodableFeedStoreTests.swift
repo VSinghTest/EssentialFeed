@@ -26,7 +26,7 @@
 import XCTest
 import EssentialFeed
 
-class CodableFeedStore{
+class CodableFeedStore: FeedStore{
     
     private struct Cache: Codable{
         let feed: [CodableFeedImage]
