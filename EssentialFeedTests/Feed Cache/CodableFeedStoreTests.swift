@@ -190,7 +190,7 @@ class CodableFeedStoreTests: XCTestCase {
         waitForExpectations(timeout: 5.0)
         XCTAssertEqual(completedOperationInOrder, [op1, op2, op3], "Expected side-effects to run serially but operations finished in the wrong order")
     }
-    
+    //the least side-effects u have the more concurrent your application can be. side-effecys are the enemy of concurrency
     
     
     
