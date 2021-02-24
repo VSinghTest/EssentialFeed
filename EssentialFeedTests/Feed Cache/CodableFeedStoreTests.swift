@@ -87,18 +87,24 @@ class CodableFeedStoreTests: XCTestCase {
     
     override func setUp() {
         super.setUp()// now test shoul know abt the internals of the test =>url
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
-         }
+        
+        setupEmptyStoreState()
+    }
+    
+    
     
     override func tearDown() {// is invoked after every test method execution. but there is another problem very hard to debug. sometimes teardown method is not invoked, eg if you have crash in your system or even if you set a break point and if you finished the execution of a test before it finish running. so to pass this prob you have to write a  set up method
         super.tearDown()
         
-        try? FileManager.default.removeItem(at: testSpecificStoreURL())
-         }
+        undoStoreSideEffects()
 
+    }
+
+    
  //Mark: - Retrival
+   
     func test_retrieve_deliversemptyOnEmptyCache(){
-        let sut = makeSUT()
+       let sut = makeSUT()
        let exp = expectation(description: "Wait for cache retrieval")
         sut.retrieve{ result in
             switch result{
@@ -168,6 +174,18 @@ class CodableFeedStoreTests: XCTestCase {
     private func testSpecificStoreURL() -> URL{
        return FileManager.default.urls(for: .cachesDirectory, in : .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
        
+    }
+    
+    private func setupEmptyStoreState(){
+        deleteStoreArtifacts()
+    }
+    
+    private func undoStoreSideEffects(){
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts(){
+        try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
 }
 
