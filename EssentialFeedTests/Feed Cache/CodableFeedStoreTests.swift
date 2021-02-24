@@ -87,16 +87,13 @@ class CodableFeedStoreTests: XCTestCase {
     
     override func setUp() {
         super.setUp()// now test shoul know abt the internals of the test =>url
-        
-        let storeURL = FileManager.default.urls(for: .documentDirectory, in : .userDomainMask).first!.appendingPathComponent("image-feed.store")
-        try? FileManager.default.removeItem(at: storeURL)
+        try? FileManager.default.removeItem(at: storeURL())
          }
     
     override func tearDown() {// is invoked after every test method execution. but there is another problem very hard to debug. sometimes teardown method is not invoked, eg if you have crash in your system or even if you set a break point and if you finished the execution of a test before it finish running. so to pass this prob you have to write a  set up method
         super.tearDown()
         
-        let storeURL = FileManager.default.urls(for: .documentDirectory, in : .userDomainMask).first!.appendingPathComponent("image-feed.store")
-        try? FileManager.default.removeItem(at: storeURL)
+        try? FileManager.default.removeItem(at: storeURL())
          }
 
  //Mark: - Retrival
@@ -163,10 +160,14 @@ class CodableFeedStoreTests: XCTestCase {
     //MARK: - Helpers
     
     private func makeSUT(file: StaticString = #file, line: UInt = #line) -> CodableFeedStore{
-        let storeUrl = FileManager.default.urls(for: .documentDirectory, in : .userDomainMask).first!.appendingPathComponent("image-feed.store")
-        let sut = CodableFeedStore(storeURL: storeUrl)
+         let sut = CodableFeedStore(storeURL: storeURL())
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func storeURL() -> URL{
+       return FileManager.default.urls(for: .documentDirectory, in : .userDomainMask).first!.appendingPathComponent("image-feed.store")
+       
     }
 }
 
