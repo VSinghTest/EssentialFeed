@@ -23,6 +23,7 @@ public final class CoreDataFeedStore: FeedStore {
     public func retrieve(completion: @escaping RetrievalCompletion) {
        
         perform { context in
+            
                     do {
                         if let cache = try ManagedCache.find(in: context) {       completion(.found(feed: cache.localFeed, timestamp: cache.timestamp))
                         } else {
