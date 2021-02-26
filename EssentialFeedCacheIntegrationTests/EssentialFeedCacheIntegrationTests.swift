@@ -59,6 +59,7 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
             let storeBundle = Bundle(for: CoreDataFeedStore.self)
             let storeURL = testSpecificStoreURL()
             let store = try! CoreDataFeedStore(storeURL: storeURL, bundle: storeBundle)
+            //let store = CodableFeedstore(storeURL: storeURL) It should also work
             let sut = LocalFeedLoader(store: store, currentDate: Date.init)
             trackForMemoryLeaks(store, file: file, line: line)
             trackForMemoryLeaks(sut, file: file, line: line)
