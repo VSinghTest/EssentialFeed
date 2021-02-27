@@ -135,7 +135,7 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
 
             insert((feed, timestamp), to: sut)
 
-            expect(sut, toRetrieve: .empty)
+        expect(sut, toRetrieve: .success(.empty))
         }
 
         func test_delete_deliversNoErrorOnEmptyCache() {
@@ -169,7 +169,7 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
             let deletionError = deleteCache(from: sut)
 
             XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
-            expect(sut, toRetrieve: .empty)
+            expect(sut, toRetrieve: .success(.empty))
         }
 
         func test_delete_hasNoSideEffectsOnDeletionError() {
@@ -178,7 +178,7 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
 
             deleteCache(from: sut)
 
-            expect(sut, toRetrieve: .empty)
+            expect(sut, toRetrieve: .success(.empty))
         }
     func test_storeSideEffects_runSerially(){
         

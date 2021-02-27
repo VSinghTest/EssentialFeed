@@ -7,21 +7,22 @@
 
 import Foundation
 
-public enum RetrieveCachedFeedResult{
-    
-    case empty
-    case found(feed:[LocalFeedImage], timestamp: Date)
-    case failure(Error)
-}
 
+    
+  
+
+public enum CacheFeed{
+    case empty
+    case found(feed: [LocalFeedImage], timestamp: Date)
+}
 // In FeedStore case the side effects overlapped. when u delete a cache u affect the insert. when u insert u also affect the delete and reteive affected by all of them. this can become messy quickly. so before we begin we must fully understand our expectations on the infrastructure implementation.
 
 public protocol FeedStore{
     
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
-    typealias RetrievalCompletion = (RetrieveCachedFeedResult) -> Void
-    
+    typealias RetrievalResult = Result<CacheFeed, Error>
+    typealias RetrievalCompletion = (RetrievalResult) -> Void
     
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
