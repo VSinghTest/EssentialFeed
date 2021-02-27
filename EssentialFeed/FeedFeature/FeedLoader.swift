@@ -7,14 +7,9 @@
 
 import Foundation
 
-public enum LoadFeedResult{
+public typealias LoadFeedResult = Result<[FeedImage], Error>
     
-    case success([FeedImage])
-    case failure(Error)
-}
-
-
-
+ 
 
 public protocol FeedLoader{
     
