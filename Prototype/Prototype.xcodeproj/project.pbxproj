@@ -12,6 +12,8 @@
 		3B03029425EACA0C00319CB5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B03029225EACA0C00319CB5 /* Main.storyboard */; };
 		3B03029625EACA0E00319CB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B03029525EACA0E00319CB5 /* Assets.xcassets */; };
 		3B03029925EACA0E00319CB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B03029725EACA0E00319CB5 /* LaunchScreen.storyboard */; };
+		3B0302A425EB122700319CB5 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0302A325EB122700319CB5 /* FeedViewController.swift */; };
+		3B0302C025EBCA4600319CB5 /* FeedImageViewModel+PrototypeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0302BF25EBCA4600319CB5 /* FeedImageViewModel+PrototypeData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		3B03029525EACA0E00319CB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B03029825EACA0E00319CB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B03029A25EACA0E00319CB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3B0302A325EB122700319CB5 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		3B0302BF25EBCA4600319CB5 /* FeedImageViewModel+PrototypeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageViewModel+PrototypeData.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				3B03029525EACA0E00319CB5 /* Assets.xcassets */,
 				3B03029725EACA0E00319CB5 /* LaunchScreen.storyboard */,
 				3B03029A25EACA0E00319CB5 /* Info.plist */,
+				3B0302A325EB122700319CB5 /* FeedViewController.swift */,
+				3B0302BF25EBCA4600319CB5 /* FeedImageViewModel+PrototypeData.swift */,
 			);
 			path = Prototype;
 			sourceTree = "<group>";
@@ -135,7 +141,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B03028D25EACA0C00319CB5 /* AppDelegate.swift in Sources */,
+				3B0302A425EB122700319CB5 /* FeedViewController.swift in Sources */,
 				3B03028F25EACA0C00319CB5 /* SceneDelegate.swift in Sources */,
+				3B0302C025EBCA4600319CB5 /* FeedImageViewModel+PrototypeData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
