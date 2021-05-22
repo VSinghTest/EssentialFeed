@@ -39,6 +39,8 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
         super.setUp()// now test shoul know abt the internals of the test =>url
         
         setupEmptyStoreState()
+        
+
     }
     
     
@@ -162,29 +164,51 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
             assertThatDeleteEmptiesPreviouslyInsertedCache(on: sut)
         }
 
-        func test_delete_deliversErrorOnDeletionError() {
-            let noDeletePermissionURL = cachesDirectory()
-            let sut = makeSUT(storeURL: noDeletePermissionURL)
+//        func test_delete_deliversErrorOnDeletionError() {
+//            let noDeletePermissionURL = cachesDirectory()
+//            let sut = makeSUT(storeURL: noDeletePermissionURL)
+//
+//            let deletionError = deleteCache(from: sut)
+//
+//            XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
+//            expect(sut, toRetrieve: .success(.none))
+//        }
+    
+    func test_delete_deliversErrorOnDeletionError() {
+        let sut = makeSUT(storeURL: noDeletePermissionURL())
 
-            let deletionError = deleteCache(from: sut)
+        let deletionError = deleteCache(from: sut)
+        
+        XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
+        expect(sut, toRetrieve: .success(.none))
 
-            XCTAssertNotNil(deletionError, "Expected cache deletion to fail")
-            expect(sut, toRetrieve: .success(.none))
-        }
+    }
 
-        func test_delete_hasNoSideEffectsOnDeletionError() {
-            let noDeletePermissionURL = cachesDirectory()
-            let sut = makeSUT(storeURL: noDeletePermissionURL)
+//        func test_delete_hasNoSideEffectsOnDeletionError() {
+//            let noDeletePermissionURL = cachesDirectory()
+//            let sut = makeSUT(storeURL: noDeletePermissionURL)
+//
+//            deleteCache(from: sut)
+//
+//            expect(sut, toRetrieve: .success(.none))
+//        }
+    
+    func test_delete_hasNoSideEffectsOnDeletionError() {
+        let noDeletePermissionURL = cachesDirectory()
+        let sut = makeSUT(storeURL: noDeletePermissionURL)
 
-            deleteCache(from: sut)
+        deleteCache(from: sut)
 
-            expect(sut, toRetrieve: .success(.none))
-        }
+        expect(sut, toRetrieve: .success(.none))
+    }
     func test_storeSideEffects_runSerially(){
         
-        let sut = makeSUT()
-        
-        assertThatSideEffectsRunSerially(on: sut)
+        let sut = makeSUT(storeURL: noDeletePermissionURL())
+
+        deleteCache(from: sut)
+
+        expect(sut, toRetrieve: .success(.none))
+
     
     }
     //the least side-effects u have the more concurrent your application can be. side-effecys are the enemy of concurrency
@@ -206,6 +230,8 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
 
     private func setupEmptyStoreState(){
         deleteStoreArtifacts()
+        createCachesDirectory()
+
     }
     
     private func undoStoreSideEffects(){
@@ -215,6 +241,21 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStore{
     private func deleteStoreArtifacts(){
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
+    
+    private func createCachesDirectory() {
+        try? FileManager
+            .default
+            .createDirectory(
+                atPath: cachesDirectory().path,
+                withIntermediateDirectories: true,
+                attributes: nil)
+    }
+    
+    private func noDeletePermissionURL() -> URL {
+        return FileManager.default.urls(for: .cachesDirectory, in: .systemDomainMask).first!
+    }
+
+
 }
 
 

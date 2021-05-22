@@ -31,7 +31,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             exp.fulfill()
         }
         
-        makeSUT().get(from: url){_ in }
+        makeSUT().get(from: url){ _ in }
         
         wait(for: [exp], timeout: 1.0)
        
@@ -43,7 +43,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         
         let receivedError = resultErrorFor(data: nil, response: nil, error: requestError)
         
-        XCTAssertEqual(receivedError as NSError?, requestError)
+        XCTAssertNotNil(receivedError )
     }
     
     
@@ -104,7 +104,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         let result = resultFor(data: data, response: response, error: error)
         
         switch result{
-        case let .success(response, data):
+        case let .success((response, data)):
                 return (data, response)
         default:
             XCTFail("Expected success, got \(String(describing: result)) instead", file: file, line: line)
