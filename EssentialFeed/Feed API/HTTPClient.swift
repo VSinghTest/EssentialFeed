@@ -7,7 +7,8 @@
 
 import Foundation
 
-// Httpclient doesn't perform side effect. get method is query. it should return the same result so its' much simpler to test operation there should not side effect
+// Httpclient doesn't perform side effect. get method is query.
+// it should return the same result so its' much simpler to test operation there should not side effect
 public protocol HTTPClient{
     /// The completion handler can be invoked in any thread.
     /// Clients are responsible to dispatch to appropriate threads, if needed.
